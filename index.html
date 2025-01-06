@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Calculator</title>
+    <style>
+        /* Basic CSS for a clean and professional design */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #535050;
+            margin: 0;
+        }
+
+        .calculator {
+            width: 280px;
+            background-color: #a19f9f;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .calculator .display {
+            width: 100%;
+            height: 50px;
+            font-size: 30px;
+            text-align: right;
+            padding: 10px;
+            background-color: #222;
+            color: white;
+            border-radius: 10px;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        .calculator button {
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
+            border: 1px solid #ddd;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border-radius: 10px;
+        }
+
+        .calculator button:hover {
+            background-color: #d0d0d0;
+        }
+
+        .calculator button:active {
+            background-color: #bbb;
+        }
+
+        .calculator .button-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .calculator .button-row button {
+            flex: 1;
+        }
+
+        .calculator .button-wide {
+            flex: 2;
+        }
+
+        .calculator .clear {
+            background-color: #d61f1f;
+            color: white;
+        }
+
+        .calculator .equal {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .calculator .operator {
+            background-color: #f1c40f;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <input type="text" class="display" id="display" disabled>
+        <div class="button-row">
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button class="operator" onclick="appendValue('/')">/</button>
+            <button class="operator" onclick="appendValue('*')">*</button>
+            <button class="operator" onclick="appendValue('-')">-</button>
+        </div>
+        <div class="button-row">
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('9')">9</button>
+            <button class="operator" onclick="appendValue('+')">+</button>
+        </div>
+        <div class="button-row">
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button onclick="appendValue('%')">%</button>
+        </div>
+        <div class="button-row">
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+            <button class="button-wide" onclick="calculateResult()" class="equal">=</button>
+        </div>
+        <div class="button-row">
+            <button class="button-wide" onclick="appendValue('0')">0</button>
+            <button onclick="appendValue('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        // Clear the display
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        // Append the value of the clicked button to the display
+        function appendValue(value) {
+            document.getElementById('display').value += value;
+        }
+
+        // Calculate the result of the expression in the display
+        function calculateResult() {
+            const display = document.getElementById('display');
+            try {
+                // Use eval to evaluate the expression
+                display.value = eval(display.value);
+            } catch (e) {
+                display.value = 'Error';
+            }
+        }
+    </script>
+
+</body>
+</html>
+
